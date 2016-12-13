@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  <script  src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+var baseUrl = "http://pokeapi.co/api/v2/pokemon/";
+
+$(document).ready(function() {
+
+
+ $("#btnZoek").click(function(event){
+   var pokUrl = $("#tbxNaam").val();
+   var url = baseUrl + pokUrl;
+   console.log(url);
+    $.getJSON(url , function(pokemon) {
+    console.log(pokemon.name);
+    });
+ });
+
+});
+</script>
+
+  </head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h3>Pokemon API</h3>
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="home.html">HOME</a>
+        </li>
+        <li>
+          <a href="info.html">INFO</a>
+        </li>
+      </ul>
+    </nav>
+
+    <article>
+      <div class="search">
+      <label>Zoeken op naam of ID:</label>
+      <input type="search" placeholder="Pokemon" class = "searchbar" id="tbxNaam"/>
+      <button class="btn" id="btnZoek">Zoek!</button>
+      </div>
+    </article>
+
+    <footer>Pokemon API</footer>
+
+  </div>
+
+</body>
+</html>
