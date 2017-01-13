@@ -5,16 +5,21 @@
   <script  src="jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 var baseUrl = "http://pokeapi.co/api/v2/pokemon/";
+var sUrl= "http://assets.pokemon.com/assets/cms2/img/pokedex/full/00";
 
 $(document).ready(function() {
-
 
  $("#btnZoek").click(function(event){
    var pokUrl = $("#tbxNaam").val();
    var url = baseUrl + pokUrl;
-   console.log(url);
+   var spriteUrl = sUrl + pokUrl + ".png";
     $.getJSON(url , function(pokemon) {
-    console.log(pokemon.name);
+      console.log(spriteUrl);
+
+    $("#pokemonResult").empty();
+    $("#pokemonResult").append("<label class='naam'>" + pokemon.name + " </label>");
+    $("#pokemonResult").append(
+    "<img class ='plaatje' src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/"+ ("000" + pokemon.id).slice(-3)+ ".png' />");
     });
  });
 
@@ -41,11 +46,15 @@ $(document).ready(function() {
       </ul>
     </nav>
 
-    <article>
+    <article id="content">
       <div class="search">
       <label>Zoeken op naam of ID:</label>
       <input type="search" placeholder="Pokemon" class = "searchbar" id="tbxNaam"/>
       <button class="btn" id="btnZoek">Zoek!</button>
+      </div>
+
+      <div id="pokemonResult" class="result">
+          <span id="plaatje"></span>
       </div>
     </article>
 
